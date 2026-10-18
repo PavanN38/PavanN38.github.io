@@ -202,6 +202,27 @@ footer .heart{color:var(--cyan)}
 </nav>
 
 <main id="top">
+<section class="hero" id="home">
+  <canvas id="stars"></canvas>
+  <div class="hero-glow glow-a"></div>
+  <div class="hero-glow glow-b"></div>
+  <div class="wrap hero-in">
+    <div class="hero-badge"><span class="dot"></span> Open to Senior Full-Stack / Java Developer roles</div>
+    <h1>Hi, I'm Pavan Naini.<br /><span class="grad">I build systems that scale.</span></h1>
+    <div class="type-row">I specialize in <span id="typer"></span><span class="caret"></span></div>
+    <p class="lead">Senior Full-Stack Developer with <strong>8+ years</strong> delivering cloud-native platforms across banking, insurance, energy and retail — backend-weighted in <strong>Java &amp; Spring Boot</strong>, with production <strong>React</strong> frontends and an <strong>AI-augmented</strong> workflow.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work →</a>
+      <a href="https://www.linkedin.com/in/pavannaini" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn Profile</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>Dallas–Fort Worth, TX</b>Based</div>
+      <div><b>JPMorgan Chase (via Globant)</b>Current client</div>
+      <div><b>~8,000 TPS</b>Platform validated at</div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
 <!-- @NEXT -->
 </main>
 
@@ -219,6 +240,33 @@ footer .heart{color:var(--cyan)}
     if(e.isIntersecting){links.querySelectorAll('a').forEach(a=>a.classList.remove('active'));const l=map[e.target.id];if(l)l.classList.add('active')}
   }),{rootMargin:'-40% 0px -55% 0px'});
   secs.forEach(s=>io.observe(s));
+})();
+/* hero: particle network canvas + typewriter */
+(function(){
+  const cv=document.getElementById('stars'),ctx=cv.getContext('2d');
+  let W,H,pts=[];const N=90,LINK=130;
+  function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}
+  size();addEventListener('resize',size);
+  for(let i=0;i<N;i++)pts.push({x:Math.random()*2000,y:Math.random()*1200,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45,r:Math.random()*1.8+.6});
+  (function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(148,184,220,.55)';ctx.fill()}
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<LINK){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle=`rgba(56,189,248,${(1-d/LINK)*.22})`;ctx.lineWidth=1;ctx.stroke()}}
+    requestAnimationFrame(tick);
+  })();
+  const words=['reactive Java microservices.','event-driven architectures.','real-time data platforms.','cloud-native systems on AWS.','secure banking-grade APIs.'];
+  const el=document.getElementById('typer');let w=0,c=0,del=false;
+  (function type(){
+    const word=words[w];
+    el.textContent=word.slice(0,c);
+    if(!del){c++;if(c>word.length){del=true;return setTimeout(type,1700)}}
+    else{c--;if(c===0){del=false;w=(w+1)%words.length}}
+    setTimeout(type,del?32:62);
+  })();
 })();
 /* @NEXT-JS */
 </script>
