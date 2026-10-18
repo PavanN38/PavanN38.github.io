@@ -223,6 +223,35 @@ footer .heart{color:var(--cyan)}
   </div>
   <div class="scroll-hint">Scroll</div>
 </section>
+<section id="about">
+  <div class="wrap">
+    <span class="kicker rv">About Me</span>
+    <h2 class="sec-title rv">Engineer first, <span class="grad">craftsman always.</span></h2>
+    <p class="sec-sub rv">I care about systems that survive production — observable, tested, and fast under real load.</p>
+    <div class="about-grid">
+      <div class="about-card rv">
+        <div class="mono-head">
+          <div class="avatar">PN</div>
+          <div><b>Pavan Naini</b><small>Senior Full-Stack Developer · DFW, TX</small></div>
+        </div>
+        <p>I'm currently contracting at <strong>JPMorgan Chase (via Globant)</strong>, building reactive microservices for a real-time account information platform — Java, Spring WebFlux, Kafka and Cassandra, validated at <strong>~8,000 TPS</strong>.</p>
+        <p>Before that I shipped a <strong>real-time fraud detection platform</strong> at CNA Insurance, a smart-metering telemetry system at ISO New England, and digital banking experiences at Ally Financial. I work <strong>AI-augmented</strong> — agentic coding tools and MCP integrations across code review, log analysis and ticket triage.</p>
+        <p>MS in Computer Science from the <strong>University of North Texas</strong>. AWS Certified Developer.</p>
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span>
+          <span class="tag">Kafka</span><span class="tag">AWS</span><span class="tag">Kubernetes</span>
+          <span class="tag">Cassandra</span><span class="tag">MCP / AI tooling</span>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat rv"><div class="num"><span class="count" data-to="8">0</span>+</div><div class="lbl">Years of experience</div></div>
+        <div class="stat rv rv-d1"><div class="num"><span class="count" data-to="5">0</span></div><div class="lbl">Companies shipped with</div></div>
+        <div class="stat rv rv-d2"><div class="num"><span class="count" data-to="8000">0</span></div><div class="lbl">TPS platform validated at</div></div>
+        <div class="stat rv rv-d3"><div class="num"><span class="count" data-to="4">0</span></div><div class="lbl">Industries: banking, insurance, energy, retail</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- @NEXT -->
 </main>
 
@@ -267,6 +296,16 @@ footer .heart{color:var(--cyan)}
     else{c--;if(c===0){del=false;w=(w+1)%words.length}}
     setTimeout(type,del?32:62);
   })();
+})();
+/* about: animated stat counters */
+(function(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;io.unobserve(e.target);
+    const el=e.target,to=+el.dataset.to,t0=performance.now(),dur=1600;
+    (function step(t){const p=Math.min((t-t0)/dur,1),v=Math.round(to*(1-Math.pow(1-p,3)));
+      el.textContent=v.toLocaleString();if(p<1)requestAnimationFrame(step)})(t0);
+  }),{threshold:.5});
+  document.querySelectorAll('.count').forEach(el=>io.observe(el));
 })();
 /* @NEXT-JS */
 </script>
