@@ -69,8 +69,10 @@ nav.scrolled{background:rgba(6,10,19,.78);backdrop-filter:blur(14px);border-bott
 .hero p.lead{max-width:620px;color:var(--muted);font-size:1.08rem;margin-bottom:38px}
 .hero p.lead strong{color:var(--text);font-weight:600}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
-.hero-meta{display:flex;gap:36px;flex-wrap:wrap;color:var(--faint);font-size:.88rem}
-.hero-meta b{color:var(--text);font-weight:600;display:block;font-size:.95rem}
+.hero-meta{display:flex;gap:40px;flex-wrap:wrap}
+.hm-item{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hm-val{color:var(--text);font-weight:600;font-size:.95rem;white-space:nowrap}
+.hm-lbl{color:var(--faint);font-size:.85rem;white-space:nowrap}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--faint);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px}
 .scroll-hint::after{content:"";width:1px;height:44px;background:linear-gradient(var(--cyan),transparent);animation:drop 1.8s ease-in-out infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -216,9 +218,9 @@ footer .heart{color:var(--cyan)}
       <a href="https://www.linkedin.com/in/pavannaini" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn Profile</a>
     </div>
     <div class="hero-meta">
-      <div><b>Dallas–Fort Worth, TX</b>Based</div>
-      <div><b>JPMorgan Chase (via Globant)</b>Current client</div>
-      <div><b>~8,000 TPS</b>Platform validated at</div>
+      <div class="hm-item"><span class="hm-val">Dallas–Fort Worth, TX</span><span class="hm-lbl">Based</span></div>
+      <div class="hm-item"><span class="hm-val">JPMorgan Chase (via Globant)</span><span class="hm-lbl">Current client</span></div>
+      <div class="hm-item"><span class="hm-val">~8,000 TPS</span><span class="hm-lbl">Platform validated at</span></div>
     </div>
   </div>
   <div class="scroll-hint">Scroll</div>
